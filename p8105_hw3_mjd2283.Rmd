@@ -1,0 +1,31 @@
+---
+title: "p8105_hw3_mjd2283"
+author: "Max"
+date: "2026-10-18"
+output: github_document
+---
+
+```{r}
+
+library(p8105.datasets)
+library(tidyverse)
+data("ny_noaa")
+
+ny_noaa
+
+ny_noaa_df = ny_noaa |>
+  janitor::clean_names() |>
+  separate(date, into = c("year", "month", "day"), convert = TRUE)
+
+```
+
+
+
+The original dataset is a tibble that is 7 columns and 2,595,176 rows. The data is divided by ID number which appears to be the same for each row. Other key variables are `date`, `pcrp`, 
+`snow`, `snwd`, `tmax`, and `tmin`. 
+
+
+
+
+
+

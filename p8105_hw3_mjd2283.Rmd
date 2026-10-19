@@ -62,7 +62,6 @@ ny_noaa_df |>
   summarize(mean_tmax = mean(tmax, na.rm = TRUE)) |>
   ggplot(aes(x = year, y=mean_tmax, color = id)) +
   geom_point(alpha = .5) +
-  geom_line(alpha = .5) +
   facet_grid(. ~ month) +
   theme(legend.position = "none")
   
@@ -71,7 +70,7 @@ ny_noaa_df |>
   
 ```
 
-
+The mean temperature in January is much lower compared to the mean temperature in July. This result is expected. The temperature fluctuates more in January in a zig zap (up and down) appearance over the years. The temperature in July appears to have less variation. There are some outliers in the graphs. For instance, one outlier shows a very cold July year around 1988.
 
 
 

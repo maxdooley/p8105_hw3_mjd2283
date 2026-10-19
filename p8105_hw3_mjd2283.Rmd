@@ -75,8 +75,6 @@ The mean temperature in January is much lower compared to the mean temperature i
 
 ```{r}
 
-install.packages("hexbin")
-
 tmax_tmin =
   ny_noaa_df |> 
   ggplot(aes(x = tmin, y = tmax)) +

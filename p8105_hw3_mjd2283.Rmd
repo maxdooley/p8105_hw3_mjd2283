@@ -54,18 +54,21 @@ Some of the most commonly observed values for snowfall include 0 mm, NA, 25 mm, 
 ```{r}
 
 ny_noaa_df |>
-  group(month %in% c(1,7)) |>
+  filter(month %in% c(1,7)) |>
   mutate(month = case_when(
     month == 1 ~ "January",
     month == 7 ~ "July")) |>
   group_by(id, year, month) |>
   summarize(mean_tmax = mean(tmax, na.rm = TRUE)) |>
-  ggplot(aes(x = year, y=mean_tmax))
+  ggplot(aes(x = year, y=mean_tmax, color = id)) +
+  geom_point(alpha = .5) +
+  geom_line(alpha = .5) +
+  facet_grid(. ~ month) +
+  theme(legend.position = "none")
   
-#Used AI assistance to mutate using case_when to switch numbers to month terms
+#Used AI assistance to mutate using case_when to switch numbers to month terms. Also used AI assistance to get rid of the legend by using theme(legend.position = "none")
+
   
-
-
 ```
 
 

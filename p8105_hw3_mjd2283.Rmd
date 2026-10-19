@@ -114,10 +114,45 @@ tmax_tmin + snow_dist
 ```{r}
 
 nhanes_covar_df = 
-  read_csv(file = "./nhanes_covar.csv")
+  read_csv(file = "./nhanes_covar.csv", skip = 4, na = c("NA", ".", "")) |>
+  janitor::clean_names() |>
+  filter(age >= 21) |>
+  drop_na() |>
+  mutate(
+    sex = case_when(
+      sex == 1 ~ "male",
+      sex == 2 ~ "female"),
+    sex = factor(sex), 
+    education = case_when(
+      education == 1 ~ "Less than high school",
+      education == 2 ~ "High school equivalent",
+      education == 3 ~ "More than high school"),
+    education = forcats::fct_relevel(
+      education, c("Less than high school", "High school equivalent", "More than high school")))
+    
+#using case_when again here, got from AI assistance unsure where it is in notes
+#factor() to convert to categorical
+#used AI assistance here to help identify which variables need to be reclassified and strategize how to approach
+
+#using forcats:fct_relevel() since working with factors, and reordered it into those 3 groups
+
+nhanes_covar_df
+#has some extra info at top originally so need to skip that
 
 nhanes_accel_df =
-    read_csv(file = "./nhanes_accel.csv")
+    read_csv(file = "./nhanes_accel.csv") |>
+    janitor::clean_names() |>
+    pivot_longer(
+      starts_with("min"),
+      names_to = "minute",
+      names_prefix = "min",
+      values_to = "mims") |>
+    mutate(minute = as.numeric(minute))
+
+#whenever really long data going across with same variable, you want to pivot longer
+
+nhanes_accel_df
+
 
 
 ```

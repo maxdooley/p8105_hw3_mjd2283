@@ -93,7 +93,7 @@ snow_dist =
   ny_noaa_df |> 
   filter(snow > 0, snow < 100) |>
   ggplot(aes(x = year, y = snow)) +
-  geom_bin2d() 
+  geom_bin2d() +
   labs( 
     title = "Snowfall (0-100mm)",
     x = "year",
@@ -105,10 +105,19 @@ snow_dist =
 library(patchwork)
 
 tmax_tmin + snow_dist
-
   
 
-  
+
+```
+#Problem 2 on Accelerometers (wearable sensors)
+
+```{r}
+
+nhanes_covar_df = 
+  read_csv(file = "./nhanes_covar.csv")
+
+nhanes_accel_df =
+    read_csv(file = "./nhanes_accel.csv")
 
 
 ```

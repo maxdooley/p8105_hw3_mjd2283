@@ -77,20 +77,37 @@ The mean temperature in January is much lower compared to the mean temperature i
 
 install.packages("hexbin")
 
-tmax_tmin_df =
+tmax_tmin =
   ny_noaa_df |> 
   ggplot(aes(x = tmin, y = tmax)) +
-  geom_hex()
-
-tmax_tmin_df
+  geom_hex() +
+  labs(
+    title = "Daily Temperature (Max vs. Min)",
+    x = "min (C)",
+    y = "max (C)"
+    )
 
 #using geom_hex() here since lots of data
 
 snow_dist =
   ny_noaa_df |> 
-  filter(snow > 0, snow < 100)
-  ggplot(aes(x = tmin, y = tmax)) +
-  geom_hex()
+  filter(snow > 0, snow < 100) |>
+  ggplot(aes(x = year, y = snow)) +
+  geom_bin2d() 
+  labs( 
+    title = "Snowfall (0-100mm)",
+    x = "year",
+    y = "snowfall (mm)"
+  )
+  
+#used geom_bin2d()
+
+library(patchwork)
+
+tmax_tmin + snow_dist
+
+  
+
   
 
 

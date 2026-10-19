@@ -73,6 +73,28 @@ ny_noaa_df |>
 The mean temperature in January is much lower compared to the mean temperature in July. This result is expected. The temperature fluctuates more in January in a zig zap (up and down) appearance over the years. The temperature in July appears to have less variation. There are some outliers in the graphs. For instance, one outlier shows a very cold July year around 1988.
 
 
+```{r}
+
+install.packages("hexbin")
+
+tmax_tmin_df =
+  ny_noaa_df |> 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+
+tmax_tmin_df
+
+#using geom_hex() here since lots of data
+
+snow_dist =
+  ny_noaa_df |> 
+  filter(snow > 0, snow < 100)
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+  
+
+
+```
 
 
 

@@ -19,7 +19,7 @@ ny_noaa_df = ny_noaa |>
   mutate(
     tmax = as.numeric(tmax) / 10,
     tmin = as.numeric(tmin) / 10,
-    pcrp = pcrp / 10, 
+    prcp = prcp / 10, 
     year = as.numeric(year),
     month = as.numeric(month),
     day = as.numeric(day))
@@ -29,8 +29,6 @@ ny_noaa_df = ny_noaa |>
 ny_noaa_df
 
 ```
-
-
 
 The original dataset is a tibble that is 7 columns and 2,595,176 rows. The data is divided by ID number which appears to be the same for each row. Other key variables are `date`, `pcrp`, 
 `snow`, `snwd`, `tmax`, and `tmin`. 

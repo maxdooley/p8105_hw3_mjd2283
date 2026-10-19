@@ -15,7 +15,18 @@ ny_noaa
 
 ny_noaa_df = ny_noaa |>
   janitor::clean_names() |>
-  separate(date, into = c("year", "month", "day"), convert = TRUE)
+  separate(date, into = c("year", "month", "day"), sep = "-") |>
+  mutate(
+    tmax = as.numeric(tmax) / 10,
+    tmin = as.numeric(tmin) / 10,
+    pcrp = pcrp / 10, 
+    year = as.numeric(year),
+    month = as.numeric(month),
+    day = as.numeric(day))
+  
+##used AI for finding out how to separate; specifically sep = "-"
+  
+ny_noaa_df
 
 ```
 

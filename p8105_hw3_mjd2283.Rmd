@@ -24,7 +24,7 @@ ny_noaa_df = ny_noaa |>
     month = as.numeric(month),
     day = as.numeric(day))
   
-##used AI for finding out how to separate; specifically sep = "-"
+#used AI for finding out how to separate; specifically sep = "-"
   
 ny_noaa_df
 
@@ -32,6 +32,44 @@ ny_noaa_df
 
 The original dataset is a tibble that is 7 columns and 2,595,176 rows. The data is divided by ID number which appears to be the same for each row. Other key variables are `date`, `pcrp`, 
 `snow`, `snwd`, `tmax`, and `tmin`. 
+
+
+```{r}
+
+ny_noaa_df |> 
+  count(snow, name = "n_obs") |>
+  arrange(desc(n_obs)) |>
+  filter(min_rank(desc(n_obs)) < 11) |>
+  knitr::kable()
+  
+#Used arrange to order from most common to least
+#Filter helps make the list smaller
+
+```
+
+Some of the most commonly observed values for snowfall include 0 mm, NA, 25 mm, 13 mm,and 51 mm. 0mm being first makes sense since it doesn't snow in New York at lot over the course of the year.
+
+#Looking at average max temperature now
+
+```{r}
+
+ny_noaa_df |>
+  group(month %in% c(1,7)) |>
+  mutate(month = case_when(
+    month == 1 ~ "January",
+    month == 7 ~ "July")) |>
+  group_by(id, year, month) |>
+  summarize(mean_tmax = mean(tmax, na.rm = TRUE)) |>
+  ggplot(aes(x = year, y=mean_tmax))
+  
+#Used AI assistance to mutate using case_when to switch numbers to month terms
+  
+
+
+```
+
+
+
 
 
 

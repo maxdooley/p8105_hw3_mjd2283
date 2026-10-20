@@ -203,7 +203,30 @@ nhanes_df |>
   
 
 ```
-There is a peak mean_mims which makes sense since that would be during the day when the individual is most active
+There is a peak mean_mims which makes sense since that would be during the day when the individual is most active.
+
+#Problem 3
+
+```{r}
+
+jan_2020 = read_csv("./citibike/Jan 2020 Citi.csv") |>
+  mutate(year = 2020, month = "January")
+
+july_2020 = read_csv("./citibike/July 2020 Citi.csv") |>
+  mutate(year = 2020, month = "July")
+
+jan_2024 = read_csv("./citibike/Jan 2024 Citi.csv") |>
+  mutate(year = 2024, month = "January")
+
+july_2024 = read_csv("./citibike/July 2024 Citi.csv") |>
+  mutate(year = 2024, month = "July")
+
+
+#need to read multiple csv files
+#used AI assistance to help upload, mutated each csv to include the year and month so that I can join them 
+
+```
+
 
 
 

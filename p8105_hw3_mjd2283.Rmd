@@ -193,11 +193,17 @@ The plot above shows how age varies with total activity across education levels.
 
 ```{r}
 
-```
-
-
-
+nhanes_df |>
+  group_by(education, sex, minute) |>
+  summarize(mean_mims = mean(mims)) |>
+  ggplot(aes(x = minute, y = mean_mims, color = sex)) +
+  geom_line() +
+  facet_grid(. ~ education) +
+  geom_smooth(se = FALSE)
   
+
+```
+There is a peak mean_mims which makes sense since that would be during the day when the individual is most active
 
 
 

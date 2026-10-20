@@ -271,6 +271,22 @@ citi_bike_df |>
 
 The table above shows the top 5 most popular starting stations for July 2024, and the n amount of rides from that station in the month.
 
+```{r}
 
+citi_bike_df |>
+  group_by(year, month, weekdays) |>
+  summarize(median_ride_time = median(duration)) |>
+  ggplot(aes(x = weekdays, y = median_ride_time, color = month)) + 
+  geom_point() +
+  facet_grid(. ~ year) +
+  scale_x_discrete(labels =c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
+  
+
+#day labels were too long, used AI assistance to change labels to shorter versions. used scale_x_discrete
+
+```
+
+
+The plot above shows weekdays in January and July, 2020 on the left and 2024 on the right. The median ride time is longer in July compared to January. In 2020, the difference in median ride time between the month categories was a lot greater than compared to the smaller difference seen in 2024. Median ride time was overall shorter in 2024 compared to 2020. 
 
 

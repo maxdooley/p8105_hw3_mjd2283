@@ -290,3 +290,15 @@ citi_bike_df |>
 The plot above shows weekdays in January and July, 2020 on the left and 2024 on the right. The median ride time is longer in July compared to January. In 2020, the difference in median ride time between the month categories was a lot greater than compared to the smaller difference seen in 2024. Median ride time was overall shorter in 2024 compared to 2020. 
 
 
+```{r}
+
+citi_bike_df |>
+  filter(year == 2024) |>
+  ggplot(aes(x = rideable_type, y = duration, fill = member_casual)) +
+  geom_boxplot() +
+  facet_grid(. ~ month)
+
+
+
+```
+I chose a box plot to show to show the duration of rides comparing bike type and member casual type across each month. Casual bikers tended to have a larger duration in bike ride compared to member bikers. Also, member bikers on average had a more even usage of classic and electric bikes, while casual bikers used classic bikes more. 

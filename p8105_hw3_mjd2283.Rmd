@@ -255,6 +255,21 @@ citi_bike_df |>
 
 The above table shows the total number of riders in each year and month combination. Members out number the casual riders in every instance. In addition, user size has increased in both casual and member categories.
 
+```{r}
+
+citi_bike_df |>
+  filter(year == 2024, month == "July") |>
+  count(start_station_name) |>
+  filter(min_rank(desc(n)) < 6) |>
+  arrange(desc(n)) |>
+  knitr::kable()
+
+#cant use original Jul 2026 since didn't clean data
+
+
+```
+
+The table above shows the top 5 most popular starting stations for July 2024, and the n amount of rides from that station in the month.
 
 
 

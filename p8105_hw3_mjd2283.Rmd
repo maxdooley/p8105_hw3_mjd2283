@@ -128,7 +128,7 @@ nhanes_covar_df =
     education = forcats::fct_relevel(
       education, c("Less than high school", "High school equivalent", "More than high school")))
     
-#using case_when again here, got from AI assistance unsure where it is in notes
+#using case_when again here, got from AI assistance but also in the notes
 #factor() to convert to categorical
 #used AI assistance here to help identify which variables need to be reclassified and strategize how to approach
 
@@ -203,7 +203,7 @@ nhanes_df |>
   
 
 ```
-There is a peak mean_mims which makes sense since that would be during the day when the individual is most active.
+There is a peak during the middle of each graph which makes sense since that would be during the day when the individual is most active. So there mean_mims would increase since that is the accelerometer value.
 
 #Problem 3
 
@@ -224,6 +224,17 @@ july_2024 = read_csv("./citibike/July 2024 Citi.csv") |>
 
 #need to read multiple csv files
 #used AI assistance to help upload, mutated each csv to include the year and month so that I can join them 
+
+citi_bike_df =
+  bind_rows(jan_2020, july_2020, jan_2024, july_2024) |>
+  janitor::clean_names() |>
+  mutate(weekdays = forcats::fct_relevel(weekdays, c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))) |>
+  select(year, month, everything())
+  
+citi_bike_df
+
+#Used forcats::fct_relevel to reorganize the dataset. This tool is pretty great
+
 
 ```
 

@@ -151,6 +151,14 @@ nhanes_accel_df =
 
 nhanes_accel_df
 
+nhanes_df = left_join(nhanes_covar_df, nhanes_accel_df, by = "seqn")
+
+nhanes_covar_df |>
+  count(education, sex) |>
+  pivot_wider(
+    names_from = sex,
+    values_from = n) |>
+  knitr::kable()
 
 
 ```

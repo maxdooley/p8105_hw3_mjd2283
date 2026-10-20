@@ -173,6 +173,32 @@ nhanes_covar_df |>
 ```
 
 
+```{r}
+total_activity_df =
+  nhanes_df |>
+  group_by(seqn, age, sex, education) |>
+  summarize(total_activity = sum(mims))
+
+#grouped by the categories needed for analysis
+
+total_activity_df |> 
+  ggplot(aes(x = age, y = total_activity, color = sex)) +
+  geom_point() +
+  facet_grid(.~education) +
+  geom_smooth(se = FALSE)
+
+```
+
+The plot above shows how age varies with total activity across education levels. The smooth lines show a general decrease with total activity over age for both genders. For the high school equivalent group and more than high school group, females tended to exercise more than males. While in the less than high school group, the lines crossed, but with age, males tend to exercise more than females. 
+
+```{r}
+
+```
+
+
+
+  
+
 
 
 

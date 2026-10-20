@@ -233,10 +233,27 @@ citi_bike_df =
   
 citi_bike_df
 
-#Used forcats::fct_relevel to reorganize the dataset. This tool is pretty great
-
+#Used forcats::fct_relevel to make sure the days of the week are in the right order for my plotting. This tool is nice. Could of also ordered Jan and July but don't have to 
 
 ```
+
+The new dataset called `citi_bike_df` has `r nrow(citi_bike_df)` rides and `r ncol(citi_bike_df)` different variables: `year`, `month`, `ride_id`, `rideable_type`, `weekdays`, `duration`, `start_station_name`, `end_station_name`, and `member_casual`.
+
+
+```{r}
+
+citi_bike_df |>
+  count(year, month, member_casual) |>
+  pivot_wider(
+    names_from = member_casual,
+    values_from = n) |>
+  knitr::kable()
+
+#total number of rides in each combination of year and month separating casual riders and members
+
+```
+
+The above table shows the total number of riders in each year and month combination. Members out number the casual riders in every instance. In addition, user size has increased in both casual and member categories.
 
 
 

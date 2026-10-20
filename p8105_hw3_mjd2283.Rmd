@@ -160,7 +160,16 @@ nhanes_covar_df |>
     values_from = n) |>
   knitr::kable()
 
+```
+In the less than high school category, there is 28 females and 27 males. In the high school equivalent category, there is 23 females and 35 males. In the more than high school category, there is 59 females and 56 males. 
 
+```{r}
+nhanes_covar_df |> 
+  ggplot(aes(x = sex, y= age)) + 
+  geom_boxplot() +
+  facet_grid(. ~ education)
+  
+#used facet_grid to clearly separate education
 ```
 
 
